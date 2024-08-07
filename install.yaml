@@ -65,7 +65,7 @@ spec:
         args:
         - /driver
         - --v=4
-        image: gcr.io/k8s-staging-networking/dra-dra-network-driver:stable
+        image: gcr.io/k8s-staging-networking/dra-network-driver:stable
         resources:
           requests:
             cpu: "100m"
