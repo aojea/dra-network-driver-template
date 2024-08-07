@@ -66,7 +66,7 @@ func discoverResources(ctx context.Context) kubeletplugin.Resources {
 
 // Pod Start runs AFTER CNI ADD and BEFORE the containers are created
 // It runs in the Container Runtime network namespace and receives as paremeters:
-// - the Pod network namespace
+// - the Pod network namespace path
 // - the ResourceClaim AllocationResult
 func podStartHook(ctx context.Context, netns string, allocation resourceapi.AllocationResult) error {
 	// Process the configurations of the ResourceClaim
@@ -101,7 +101,7 @@ func podStartHook(ctx context.Context, netns string, allocation resourceapi.Allo
 // Pod Stop runs on Pod deletion, Pod deletion shoud be best effort, is recommended
 // to avoid returning an error in this hook.
 // It runs in the Container Runtime network namespace and receives as paremeters:
-// - the Pod network namespace
+// - the Pod network namespace path
 // - the ResourceClaim allocation
 func podStopHook(ctx context.Context, netns string, allocation resourceapi.AllocationResult) error {
 	// Process the configurations of the ResourceClaim
