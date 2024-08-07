@@ -100,11 +100,14 @@ jobs:
         /usr/local/bin/kubectl apply -f examples/deviceclass.yaml
         /usr/local/bin/kubectl apply -f examples/resourceclaimtemplate.yaml
         /usr/local/bin/kubectl apply -f examples/pod0_resourceclaimtemplate.yaml
-        sleep 2
+        # TODO investigate if there is a bug if the request is created before
+        # any resource is available, sync period is 15 seconds so this should
+        # guarantee the resource is exposed at the time the pod is created
+        sleep 31
         /usr/local/bin/kubectl get pods pod0 -o yaml
         /usr/local/bin/kubectl get deviceclass -o yaml
         /usr/local/bin/kubectl get resourceslices -o yaml
-        /usr/local/bin/kubectl wait --timeout=2m --for=condition=ready pods pod0
+        /usr/local/bin/kubectl wait --timeout=1m --for=condition=ready pods pod0
         /usr/local/bin/kubectl get pods pod0 -o yaml
 
     - name: Upload Junit Reports
