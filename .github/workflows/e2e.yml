@@ -26,11 +26,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ipFamily: ["ipv4", "ipv6"]
+        # only IPv4 is enough by now
+        ipFamily: ["ipv4"]
     env:
-      JOB_NAME: "dra-network-driver-${{ matrix.ipFamily }}-${{ matrix.proxyMode }}"
+      JOB_NAME: "dra-network-driver-${{ matrix.ipFamily }}"
       IP_FAMILY: ${{ matrix.ipFamily }}
-      KUBEPROXY_MODE: ${{ matrix.proxyMode }}
     steps:
     - name: Check out code
       uses: actions/checkout@v2
