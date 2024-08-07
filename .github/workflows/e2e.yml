@@ -96,11 +96,14 @@ jobs:
       run: |
         # Create dummy interface on worker 1
         cat examples/add_dummy_iface.sh | docker exec -i ${{ env.KIND_CLUSTER_NAME }}-worker bash
+        docker exec -i ${{ env.KIND_CLUSTER_NAME }}-worker ip a
         /usr/local/bin/kubectl apply -f examples/deviceclass.yaml
         /usr/local/bin/kubectl apply -f examples/resourceclaimtemplate.yaml
         /usr/local/bin/kubectl apply -f examples/pod0_resourceclaimtemplate.yaml
         sleep 2
         /usr/local/bin/kubectl get pods pod0 -o yaml
+        /usr/local/bin/kubectl get deviceclass -o yaml
+        /usr/local/bin/kubectl get resourceslices -o yaml
         /usr/local/bin/kubectl wait --timeout=2m --for=condition=ready pods pod0
         /usr/local/bin/kubectl get pods pod0 -o yaml
 
