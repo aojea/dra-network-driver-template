@@ -7,7 +7,6 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/aojea/kubernetes-network-driver/pkg/dra"
 	"golang.org/x/sys/unix"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
@@ -83,7 +82,7 @@ func run() int {
 	}()
 	signal.Notify(signalCh, os.Interrupt, unix.SIGINT)
 
-	driver, err := dra.Start(ctx, driverName, clientset, nodeName)
+	driver, err := Start(ctx, driverName, clientset, nodeName)
 	if err != nil {
 		klog.Infof("driver failed to start: %v", err)
 		return 1
