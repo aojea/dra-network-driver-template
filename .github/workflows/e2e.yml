@@ -49,12 +49,12 @@ jobs:
       run: |
         TMP_DIR=$(mktemp -d)
         # Download kubernetes artifacts
-        curl -L https://dl.k8s.io/${{ env.K8S_VERSION }}/kubernetes-server-linux-arm64.tar.gz -o ${TMP_DIR}/kubernetes-server-linux-arm64.tar.gz
+        curl -L https://dl.k8s.io/${{ env.K8S_VERSION }}/kubernetes-server-linux-amd64.tar.gz -o ${TMP_DIR}/kubernetes-server-linux-amd64.tar.gz
         # kind TODO use 0.24.0 once is released to allow to build from tarballs
         go install sigs.k8s.io/kind@v0.24.0-alpha.0.20240806002849-00d659bd28be
         sudo cp $(go env GOPATH)/bin/kind /usr/local/bin/kind
         # kind image
-        /usr/local/bin/kind build node-image ${TMP_DIR}/kubernetes-server-linux-arm64.tar.gz --image kindest/kindnode:latest
+        /usr/local/bin/kind build node-image ${TMP_DIR}/kubernetes-server-linux-amd64.tar.gz --image kindest/kindnode:latest
         # Get the e2e and ginkgo binaries TODO add DRA e2e test steps later
         curl -L https://dl.k8s.io/${{ env.K8S_VERSION }}/kubernetes-test-linux-amd64.tar.gz -o ${TMP_DIR}/kubernetes-test-linux-amd64.tar.gz
         tar xvzf ${TMP_DIR}/kubernetes-test-linux-amd64.tar.gz \
