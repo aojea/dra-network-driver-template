@@ -1,0 +1,16 @@
+apiVersion: resource.k8s.io/v1alpha3
+kind: DeviceClass
+metadata:
+  name: dummy-interfaces
+
+spec:
+  selectors:
+    - cel:
+        expression: device.driver == "dra.networking.driver"
+    - cel:
+        expression: device.attributes["dra.networking.driver"].type == "dummy"
+  config:
+  - opaque:
+      driver: dra.networking.driver
+      parameters:
+        ipam: "dhcp"
