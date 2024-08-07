@@ -17,7 +17,7 @@ const (
 	// DEFINE THE DRIVER NAME
 	driverName = "dra.networking.driver"
 	// DEFINE THE PERIOD THE DRIVER DISCOVER THE LOCAL RESOURCES
-	discoveryPeriod = 1 * time.Minute
+	discoveryPeriod = 15 * time.Second
 )
 
 // DISCOVER LOCAL RESOURCES TO BE PUBLISHED ON THE ResourceSlice
@@ -33,6 +33,10 @@ func discoverResources(ctx context.Context) kubeletplugin.Resources {
 	}
 
 	for _, iface := range ifaces {
+		// Skip loopback interface
+		if iface.Flags&net.FlagLoopback == net.FlagLoopback {
+			continue
+		}
 		// Create the basic Device
 		device := resourceapi.Device{
 			Name: iface.Name,
