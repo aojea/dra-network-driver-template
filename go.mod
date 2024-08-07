@@ -5,7 +5,7 @@ go 1.22.0
 require (
 	github.com/aojea/kubernetes-network-driver v0.0.0-20240807074144-5c943ecd8fc4
 	github.com/containerd/nri v0.6.1
-	golang.org/x/sys v0.21.0
+	golang.org/x/sys v0.23.0
 	k8s.io/api v0.30.3
 	k8s.io/apimachinery v0.30.3
 	k8s.io/client-go v0.30.3
