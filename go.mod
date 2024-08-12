@@ -4,7 +4,7 @@ go 1.22.0
 
 require (
 	github.com/containerd/nri v0.6.1
-	golang.org/x/sys v0.23.0
+	golang.org/x/sys v0.24.0
 	k8s.io/api v0.30.3
 	k8s.io/apimachinery v0.30.3
 	k8s.io/client-go v0.30.3
