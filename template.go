@@ -9,6 +9,7 @@ import (
 
 	resourceapi "k8s.io/api/resource/v1alpha3"
 	"k8s.io/apimachinery/pkg/api/resource"
+	"k8s.io/apimachinery/pkg/util/validation"
 	"k8s.io/dynamic-resource-allocation/kubeletplugin"
 	"k8s.io/klog/v2"
 )
@@ -35,6 +36,11 @@ func discoverResources(ctx context.Context) kubeletplugin.Resources {
 	for _, iface := range ifaces {
 		// Skip loopback interface
 		if iface.Flags&net.FlagLoopback == net.FlagLoopback {
+			continue
+		}
+		nameValidationErrors := validation.IsDNS1123Label(iface.Name)
+		if len(nameValidationErrors) > 0 {
+			klog.V(2).Info("skipping interface %s name not valid: %v", iface.Name, nameValidationErrors)
 			continue
 		}
 		// Create the basic Device
