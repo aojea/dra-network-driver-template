@@ -12,7 +12,7 @@ on:
 
 env:
   GO_VERSION: "1.22"
-  K8S_VERSION: "v1.31.0-rc.1"
+  K8S_VERSION: "v1.31.0"
   KIND_VERSION: "v0.24.0"
   KIND_CLUSTER_NAME: dra
 
