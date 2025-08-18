@@ -6,10 +6,10 @@ require (
 	github.com/containerd/nri v0.9.0
 	github.com/prometheus/client_golang v1.22.0
 	golang.org/x/sys v0.34.0
-	k8s.io/api v0.33.3
-	k8s.io/apimachinery v0.33.3
-	k8s.io/client-go v0.33.3
-	k8s.io/component-helpers v0.33.3
+	k8s.io/api v0.33.4
+	k8s.io/apimachinery v0.33.4
+	k8s.io/client-go v0.33.4
+	k8s.io/component-helpers v0.33.4
 	k8s.io/dynamic-resource-allocation v0.33.3
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/utils v0.0.0-20250604170112-4c0f3b243397
